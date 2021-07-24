@@ -1,5 +1,6 @@
+from django.contrib.messages.api import success
 from django.http import HttpResponse,StreamingHttpResponse 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from flask.templating import render_template
 from flask import Flask, render_template, Response
 from keras.models import load_model
@@ -9,7 +10,13 @@ from keras.preprocessing import image
 import cv2
 import numpy as np
 import cv2
+from main_app.models import empInsert
+from .forms import UserRegistrationForm
 from django.template import Context, Template
+from tensorflow.python.eager.context import context
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages, redirects
+
 face_classifier = cv2.CascadeClassifier(r'C:\Users\hp\Documents\SE\3rd year\Research Project\project\Emotion Recognition\emotion\models\haarcascade_frontalface_default.xml')
 classifier =load_model(r'C:\Users\hp\Documents\SE\3rd year\Research Project\project\Emotion Recognition\emotion\models\Emotion_little_vgg.h5')
 
@@ -18,7 +25,6 @@ class_labels = ['Angry','Happy','Neutral','Sad','Surprise']
 
 
 app = Flask(__name__)
-
 camera = cv2.VideoCapture(0) 
 
 
@@ -69,14 +75,30 @@ if __name__ == '__main__':
 
 
 
-# def video_feed(request):
-#     StreamingHttpResponse(gen_frames(video_), content_type='multipart/x-mixed-replace; boundary=frame')
-#     tru= render(request,'index.html')
-#     return tru
+def pagehome(request):
+    context={'posts':posts}
+    return render(request,'frontface.html',context)
 
 
-# def video_feed(request):
-#    return  StreamingHttpResponse(gen_frames(), content_type='multipart/x-mixed-replace; boundary=frame')
+def loginhome(request):
+    return render(request,'login.html')
 
-# def homePageView(TemplateView):
-#       render_template = 'home.html'
+def signup(request):
+    if request.method=="POST":
+        
+        form=UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            uname =form.cleaned_data.get('username')
+            x=form.cleaned_data.get('password1')
+
+            saverecord=empInsert()
+            saverecord.username=uname
+            saverecord.password=x
+            saverecord.save()
+            messages.success(request, f'YOUR RECORDS WAS PUBLISHED TO THE >>>DB')
+            messages.success(request,f'Hi {uname},your password is  { x}, your account has been created sucessfully')
+            return redirect('login')
+    else:
+            form=UserRegistrationForm()
+    return render(request,'signup.html', {'form':form})
