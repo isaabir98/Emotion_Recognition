@@ -10,7 +10,7 @@ urlpatterns = [
     path('noob/', views.pagehome, name='noob-about'),
     path('login/', auth_view.LoginView.as_view(template_name='login.html'), name='login'),
     path('signup/',views.signup,name='signup'),
-    
     # path('video_feed/', views.video_feed, name='video_feed'),
-
+    path('userpanel1/',views.userpanel1,name='userpanel1'),
+    path('newsapi',views.newsapi,name='newsapi'),
     ]

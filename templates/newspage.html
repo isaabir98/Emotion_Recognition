@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'newspage.css' %}" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+	
+    <title>News today</title>
+</head>
+<body>
+	<input type="checkbox" id="check">
+		
+		
+	<header>
+		<label for="check">
+		<i class="fas fa-bars" id="sidebar_btn"></i>
+		</label>
+		<div class="left_area">
+			<h3>Your <span>Webpage</span> </h3>
+		</div>
+		<div class="right_area">
+			<a href="#"  class="logout_btn">Logout</a>
+		</div>
+	</header>
+	
+
+	<div class="sidebar">
+		<img src="" alt="">
+		<h4>username</h4>
+	   <a href="#"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+	   <a href="#"><i class="fas fa-cogs"></i><span>Settings</span></a>
+	   <a href="{%url 'newsapi'%}"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+	   <a href="#"><i class="fas fa-info"></i><span>Info</span></a>
+	   <a href="{%url 'login'%}"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+	</div>
+
+
+
+   
+     <div class="container">
+      
+                    <div class="col-md-12">
+                    {% for i in articles %}
+                    <div class="card rounded shadow-lg m-2" style="width: 45rem;">
+                        <img src="{{i.urlToImage}}" alt="..." class="card-img-top">
+                        <div class="card-body">
+                        <p class="card-text">{{i.author}}</p>
+                        <h5 class="card-title">{{i.title}}</h5>
+                        <p class="card-title">{{i.source.name}}</p>
+                        <p class="card-text">{{i.description}}</p>
+                        <hr>
+                        <small>date:{{i.publishedAt}}</small>
+                        <a href="{{i.url}}" target="_blank" class="btn btn-success m-1">See News</a>
+                        </div>
+                    </div>
+            {%endfor%}
+        
+       
+        </div>
+
+    </div>
+
+   
+    <div class="sidebar_right">
+		<img src="" alt="">
+		<h4>Category</h4>
+	   <a href="{%url 'newsapi'%}?category=Science"><i class="fas fa-atom"></i><span>Science</span></a>
+	   <a href="{%url 'newsapi'%}?category=technology"><i class="fas fa-microchip"></i><span>Technology</span></a>
+	   <a href="{%url 'newsapi'%}?category=Entertainment"><i class="fas fa-film"></i><span>Entertainment</span></a>
+	   <a href="{%url 'newsapi'%}?category=Sports"><i class="fas fa-running"></i><span>Sports</span></a>
+	   <a href="{%url 'newsapi'%}?category=Business"><i class="fas fa-business-time"></i><span>Business</span></a>
+       <a href="{%url 'newsapi'%}?category=health"><i class="fas fa-first-aid"></i><span>Health</span></a>
+	</div>
+
+	<!--
+<div class="categories">
+    <ul >
+          <li><a class="btn btn-secondary" href="{%url 'newsapi'%}?category=technology">Technology</a></li>
+          <li><a class="btn btn-success" href="{%url 'newsapi'%}?category=health">Health</a></li>
+          <li><a class="btn btn-danger" href="{%url 'newsapi'%}?category=Entertainment">Entertainment</a></li>
+          <li><a class="btn btn-secondary" href="{%url 'newsapi'%}?category=Sports">Sports</a></li>
+          <li><a class="btn btn-primary" href="{%url 'newsapi'%}?category=Science">Science</a></li>
+          <li><a class="btn btn-info" href="{%url 'newsapi'%}?category=Business">Business</a></li>
+      </ul>
+  </div>
+-->
+  <h2>Search Country</h2>
+    
+        <form action="" method="get">
+            <input type="text" name="country">
+            <button type="submit" value="Search">Search</button>
+        </form>
+ 
+
+    
+
+   
+</body>
+</html>

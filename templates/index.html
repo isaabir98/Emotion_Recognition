@@ -1,23 +1,117 @@
-{% extends 'login.html '%}
 {% load static %}
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-   
-<h1>
-    SEARCHING.........
-</h1>
+  <title>Document</title>
 
+<link rel="stylesheet" href="{% static 'vid_feed.css' %}" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
   {% block content%}
    <body>
-          <img src="{% url 'video_feed' %}" width="20%">
-        </body>
-        {% endblock %}
-<style>
-    body{
-        background-color:yellow;
-        }
 
-</style>
+    <header>
+      <img href="{% url 'login' %}" src="{% static 'images/i.png' %}"  class="logo"  alt="logo">
+      <div class="nav" id="parentdiv">
+        <nav>
+          <ul class="nav_links">
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+            <a href="#" class="cta"><button>Contact</button></a>
+          </ul>
+            </nav>
+       
+      </div>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+      <div class="vids">
+      <img src="{% url 'video_feed' %}"  class="vid_feed" width="40%">
+    </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+    <div class="foot">
+      <footer>
+      <div class="main-content">
+         
+        <div class="left box">
+            <h2>About Us</h2>
+          <div class="content">
+              <p>
+                This content suggesting website is designed for the final year research project, the main idea is to suggest 
+                contents for users based on their emotions. This website aimed at reducing the surf time that is spent for users on 
+                the internet.
+              </p>
+           
+
+            <div class="social">
+              <a href="#"><span class="fab fa-facebook-f"></span></a>
+              <a href="#"><span class="fab fa-twitter"></span></a>             
+              <a href="#"><span class="fab fa-instagram"></span></a>
+              <a href="#"><span class="fab fa-youtube"></span></a>  
+            </div>  
+          </div>
+        </div>
+
+            
+        <div class="center box">
+            <h2>Address</h2>
+          <div class="content">
+            
+            <div class="place">
+              <span class="fas fa-map-market-alt"></span>
+              <span class="text">Colombo , Srilanka </span>
+            </div>
+            
+            <div class="phone">
+              <span class="fas fa-map-phone-alt"></span>
+              <span class="text">+94******** </span>
+            </div>
+
+
+            <div class="email">
+                <span class="fas fa-map-envelope-alt"></span>
+                <span class="text">isaa76608@gmail.com</span>
+            </div> 
+         
+          </div>
+        </div>
+        
+            <div class="rightbox">
+              <h2>Contact us</h2>
+              <div class="content">
+                <form action="#">
+                  <div class="email">
+                    <div class="text">Email*</div>
+                    <input type="email" required>
+                  </div>
+                
+                  <div class="msg">
+                    <div class="text">Message*</div>
+                    <textarea name="" id="" cols="25" rows="2" required></textarea>
+                  </div>
+                
+                  <div class="btn">
+                    <button type="submit"> Send </button>
+                  </div>
+                
+                </form>
+              </div>
+            </div>
+            </div>  
+      </footer>
+      </div>
+  
+  </body>
+        {% endblock %}
+
 
 </html>
